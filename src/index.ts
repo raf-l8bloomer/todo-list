@@ -2,6 +2,7 @@ import { v4 as uuidV4 } from "uuid";
 
 // console.log(uuidV4());
 
+// creating a Task type so TS knows what to expect in functions
 type Task = {
   id: string;
   title: string;
@@ -12,6 +13,8 @@ type Task = {
 const list = document.querySelector<HTMLUListElement>("#list");
 const form = document.querySelector<HTMLFormElement>("#new-task-form");
 const input = document.querySelector<HTMLInputElement>("#new-task-title");
+
+// type is array of Task objects
 const tasks: Task[] = loadTasks();
 tasks.forEach(addListItem);
 
@@ -45,6 +48,7 @@ function addListItem(task: Task) {
   const checkbox = document.createElement("input");
 
   // everytime you click on checkbox, toggles completed to true or false
+  // EL added when addListItem is created
   checkbox.addEventListener("change", () => {
     task.completed = checkbox.checked;
     saveTasks();
